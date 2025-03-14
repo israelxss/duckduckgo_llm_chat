@@ -14,12 +14,12 @@ import re
 
 def reverse_hebrew_words(text):
     def reverse_if_hebrew(word):
-        return word[::-1] if re.search(r'[\u0590-\u05FF]', word) else word
+        return word[::-1] if re.search(r'[\u05B0-\u05EA]', word) else word
 
     words = re.split(r'(\s+)', text) 
     processed_words = [reverse_if_hebrew(word) for word in words] 
     reversed_text = ''.join(processed_words).split()
-    return ' '.join(reversed(reversed_text))
+    return ' '.join(reversed(reversed_text)) if re.search(r'[\u05B0-\u05EA]', ''.join(reversed_text)) else ' '.join(reversed_text)
 
 
 # Constants
